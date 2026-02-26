@@ -54,21 +54,25 @@ nav,.hero,section,footer { position:relative; z-index:2; }
   background:var(--accent);
   border-radius:50%;
   position:fixed;
+  top:0; left:0;
+  margin-top:-6px; margin-left:-6px;
   pointer-events:none;
   z-index:9999;
   will-change:transform;
   box-shadow:0 0 14px var(--accent), 0 0 40px rgba(0,245,160,.3);
-  transition:width .2s ease, height .2s ease, opacity .3s ease;
+  transition:opacity .3s ease;
 }
 .cursor-ring {
   width:36px; height:36px;
   border:1.5px solid rgba(0,245,160,.4);
   border-radius:50%;
   position:fixed;
+  top:0; left:0;
+  margin-top:-18px; margin-left:-18px;
   pointer-events:none;
   z-index:9998;
   will-change:transform;
-  transition:width .2s ease, height .2s ease, opacity .3s ease;
+  transition:opacity .3s ease;
 }
 
 #scroll-progress {
@@ -275,24 +279,32 @@ nav a:hover, nav a.active {
 .btn:hover::before { opacity:1; }
 
 .scroll-hint {
-  position:absolute; bottom:38px; left:50%; transform:translateX(-50%);
+  position:absolute; bottom:38px;
+  width:100%; left:0;
   display:flex; flex-direction:column; align-items:center; gap:8px;
   color:var(--muted); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
   animation:fadeUp 1s ease 1.2s both;
 }
 .scroll-hint .mouse {
-  width:22px; height:34px;
-  border:1.5px solid rgba(255,255,255,.18); border-radius:12px;
-  display:flex; justify-content:center; padding-top:6px;
+  width:26px; height:40px;
+  border:2px solid rgba(255,255,255,0.25);
+  border-radius:13px;
+  position:relative;
 }
 .scroll-hint .wheel {
-  width:3px; height:7px; background:var(--accent); border-radius:3px;
+  width:4px; height:8px;
+  background:var(--accent);
+  border-radius:2px;
+  position:absolute;
+  top:6px;
+  left:50%;
+  margin-left:-2px;
   animation:scrollWheel 1.8s ease infinite;
 }
 @keyframes scrollWheel {
-  0%  { transform:translateY(0); opacity:1; }
-  80% { transform:translateY(10px); opacity:0; }
-  100%{ transform:translateY(0); opacity:0; }
+  0%   { transform:translateY(0);    opacity:1; }
+  80%  { transform:translateY(12px); opacity:0; }
+  100% { transform:translateY(0);    opacity:0; }
 }
 
 /* ── Sections ───────────────────────────── */
@@ -849,7 +861,6 @@ footer strong { color:var(--accent); }
 
   <div class="card-container">
 
-    <!-- Original 2 projects -->
     <div class="card project-card" data-proj-cat="ai web">
       <span class="project-number">01</span>
       <span class="proj-cat-badge ai">AI / ML</span>
@@ -857,7 +868,6 @@ footer strong { color:var(--accent); }
       <h3>Mood Music App</h3>
       <p>AI-powered music recommendation engine that curates playlists based on your real-time emotional state.</p>
       <div class="tag-row"><span class="tag">AI / ML</span><span class="tag">Node.js</span><span class="tag">Spotify API</span></div>
-      
     </div>
 
     <div class="card project-card" data-proj-cat="web">
@@ -867,10 +877,8 @@ footer strong { color:var(--accent); }
       <h3>News App</h3>
       <p>Real-time news aggregator with category filtering, bookmarks, and a clean reading experience.</p>
       <div class="tag-row"><span class="tag">REST API</span><span class="tag">JavaScript</span><span class="tag">CSS Grid</span></div>
-     
     </div>
 
-    <!-- ══ NEW: 6 additional projects ══ -->
     <div class="card project-card" data-proj-cat="ai">
       <span class="project-number">03</span>
       <span class="proj-cat-badge ai">AI / ML</span>
@@ -878,7 +886,6 @@ footer strong { color:var(--accent); }
       <h3>Personal Assistant</h3>
       <p>Voice-activated AI assistant with natural language understanding, task scheduling, and smart home control integration.</p>
       <div class="tag-row"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">OpenAI API</span><span class="tag">Speech</span></div>
-      
     </div>
 
     <div class="card project-card" data-proj-cat="web">
@@ -888,7 +895,6 @@ footer strong { color:var(--accent); }
       <h3>Weather Check</h3>
       <p>Beautiful weather dashboard with 7-day forecasts, animated sky visuals, location detection, and air quality index tracking.</p>
       <div class="tag-row"><span class="tag">OpenWeather API</span><span class="tag">React</span><span class="tag">Geolocation</span></div>
-      
     </div>
 
     <div class="card project-card" data-proj-cat="iot">
@@ -898,7 +904,6 @@ footer strong { color:var(--accent); }
       <h3>Fire Alarm System</h3>
       <p>IoT-based fire detection using smoke and temperature sensors with real-time SMS/email alerts and a live monitoring dashboard.</p>
       <div class="tag-row"><span class="tag">Arduino</span><span class="tag">MQ-2 Sensor</span><span class="tag">MQTT</span><span class="tag">Node.js</span></div>
-      
     </div>
 
     <div class="card project-card" data-proj-cat="cv ai">
@@ -908,7 +913,6 @@ footer strong { color:var(--accent); }
       <h3>Face Detector</h3>
       <p>Real-time face detection and recognition using deep learning — identifies faces, emotions, and age from a live webcam feed.</p>
       <div class="tag-row"><span class="tag">OpenCV</span><span class="tag">Python</span><span class="tag">DeepFace</span><span class="tag">PyTorch</span></div>
-      
     </div>
 
     <div class="card project-card" data-proj-cat="iot">
@@ -918,7 +922,6 @@ footer strong { color:var(--accent); }
       <h3>Humidity &amp; Temp Monitor</h3>
       <p>Smart IoT dashboard reading DHT22 sensor data in real-time, logging historical trends and alerting on threshold breaches.</p>
       <div class="tag-row"><span class="tag">Raspberry Pi</span><span class="tag">DHT22</span><span class="tag">InfluxDB</span><span class="tag">Grafana</span></div>
-      
     </div>
 
     <div class="card project-card" data-proj-cat="iot cv">
@@ -928,7 +931,6 @@ footer strong { color:var(--accent); }
       <h3>Motion Detector</h3>
       <p>PIR + camera-based motion detection with snapshot capture, timestamp logging, and instant Telegram push notifications.</p>
       <div class="tag-row"><span class="tag">PIR Sensor</span><span class="tag">ESP32-CAM</span><span class="tag">Python</span><span class="tag">Telegram API</span></div>
-      
     </div>
 
   </div>
@@ -960,22 +962,39 @@ footer strong { color:var(--accent); }
 /* ── 1. CURSOR ─────────────────────────── */
 const dot  = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX; my=e.clientY;
-  dot.style.transform=`translate(${mx-6}px,${my-6}px)`;
+let mx=0, my=0, rx=0, ry=0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX;
+  my = e.clientY;
+  // margin-left:-6px and margin-top:-6px in CSS handle centering
+  dot.style.left = mx + 'px';
+  dot.style.top  = my + 'px';
 });
-(function lerpRing(){
-  rx+=(mx-rx)*.13; ry+=(my-ry)*.13;
-  ring.style.transform=`translate(${rx-18}px,${ry-18}px)`;
+
+(function lerpRing() {
+  rx += (mx - rx) * 0.13;
+  ry += (my - ry) * 0.13;
+  // margin-left:-18px and margin-top:-18px in CSS handle centering
+  ring.style.left = rx + 'px';
+  ring.style.top  = ry + 'px';
   requestAnimationFrame(lerpRing);
 })();
-document.querySelectorAll('a,button,.card,.skill-badge,.skill-filter,.sm-node').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{dot.style.width=dot.style.height='8px';ring.style.width=ring.style.height='54px';});
-  el.addEventListener('mouseleave',()=>{dot.style.width=dot.style.height='12px';ring.style.width=ring.style.height='36px';});
+
+document.querySelectorAll('a,button,.card,.skill-badge,.skill-filter,.sm-node').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    ring.style.width = ring.style.height = '54px';
+    ring.style.marginTop = '-27px';
+    ring.style.marginLeft = '-27px';
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.style.width = ring.style.height = '36px';
+    ring.style.marginTop = '-18px';
+    ring.style.marginLeft = '-18px';
+  });
 });
-document.addEventListener('mouseleave',()=>{dot.style.opacity='0';ring.style.opacity='0';});
-document.addEventListener('mouseenter',()=>{dot.style.opacity='1';ring.style.opacity='1';});
+document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
+document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; ring.style.opacity = '1'; });
 
 /* ── 2. PARTICLE CANVAS ─────────────────── */
 const canvas=document.getElementById('bg-canvas');
@@ -1064,18 +1083,32 @@ sections.forEach(s=>revealObs.observe(s));
 
 /* ── 5. CARD 3D TILT ────────────────────── */
 document.querySelectorAll('.card:not(.project-card)').forEach(card=>{
+  card.addEventListener('mouseenter',()=>{
+    card.style.transition='box-shadow .4s ease, border-color .4s ease, background .4s ease';
+  });
   card.addEventListener('mousemove',e=>{
     const r=card.getBoundingClientRect(),dx=(e.clientX-r.left-r.width/2)/(r.width/2),dy=(e.clientY-r.top-r.height/2)/(r.height/2);
     card.style.transform=`perspective(800px) rotateX(${-dy*7}deg) rotateY(${dx*7}deg) translateY(-10px)`;
   });
-  card.addEventListener('mouseleave',()=>card.style.transform='');
+  card.addEventListener('mouseleave',()=>{
+    card.style.transition='transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease, border-color .4s ease, background .4s ease';
+    card.style.transform='';
+  });
 });
 document.querySelectorAll('.project-card').forEach(card=>{
+  card.addEventListener('mouseenter',()=>{
+    // remove transition while moving so tilt follows cursor instantly
+    card.style.transition='box-shadow .4s ease, border-color .4s ease, background .4s ease';
+  });
   card.addEventListener('mousemove',e=>{
     const r=card.getBoundingClientRect(),dx=(e.clientX-r.left-r.width/2)/(r.width/2),dy=(e.clientY-r.top-r.height/2)/(r.height/2);
-    card.style.transform=`perspective(800px) rotateX(${-dy*5}deg) rotateY(${dx*5}deg) translateY(-10px)`;
+    card.style.transform=`perspective(800px) rotateX(${-dy*7}deg) rotateY(${dx*7}deg) translateY(-10px)`;
   });
-  card.addEventListener('mouseleave',()=>card.style.transform='');
+  card.addEventListener('mouseleave',()=>{
+    // restore smooth transition only when leaving
+    card.style.transition='transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease, border-color .4s ease, background .4s ease';
+    card.style.transform='';
+  });
 });
 
 /* ── 6. TYPING EFFECT ───────────────────── */
@@ -1170,7 +1203,7 @@ function staggerBadges(container){
   container.querySelectorAll('.skill-badge').forEach((b,i)=>{
     b.style.animationDelay=`${i*.04}s`;
     b.classList.remove('badge-pop');
-    void b.offsetWidth; // reflow
+    void b.offsetWidth;
     b.classList.add('badge-pop');
   });
 }
@@ -1192,9 +1225,7 @@ const counterObs=new IntersectionObserver(entries=>{
 },{threshold:.5});
 if(totalEl)counterObs.observe(totalEl);
 
-/* ══════════════════════════════════════════
-   NEW 14: SCROLL MAP SIDEBAR
-   ══════════════════════════════════════════ */
+/* ── 14. SCROLL MAP SIDEBAR ─────────────── */
 const scrollMapEl = document.getElementById('scroll-map');
 const smTrack     = document.getElementById('sm-track');
 
@@ -1287,9 +1318,7 @@ function injectMapLines(){
 }
 requestAnimationFrame(injectMapLines);
 
-/* ══════════════════════════════════════════
-   NEW 16: PROJECT FILTER PILLS
-   ══════════════════════════════════════════ */
+/* ── 16. PROJECT FILTER PILLS ───────────── */
 const projFilters = document.querySelectorAll('[data-proj-filter]');
 const projCards   = document.querySelectorAll('.project-card[data-proj-cat]');
 
